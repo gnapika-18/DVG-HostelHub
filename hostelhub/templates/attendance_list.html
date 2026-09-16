@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Attendance History</h1>
+    <p>View all resident attendance records.</p>
+</div>
+
+<div class="section">
+
+    <a href="{% url 'mark_attendance' %}" class="btn">
+        ➕ Mark Attendance
+    </a>
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Resident</th>
+                    <th>Room</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for attendance in attendances %}
+
+                <tr>
+                    <td>{{ attendance.resident.name }}</td>
+
+                    <td>
+                        {{ attendance.resident.room.room_number }}
+                    </td>
+
+                    <td>
+                        {{ attendance.date }}
+                    </td>
+
+                    <td>
+                        {% if attendance.status == "Present" %}
+                            <span class="status present">
+                                Present
+                            </span>
+                        {% else %}
+                            <span class="status absent">
+                                Absent
+                            </span>
+                        {% endif %}
+                    </td>
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="4">
+                        No attendance records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

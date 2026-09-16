@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Add Resident</h1>
+    <p>Add a new resident to DVG HostelHub.</p>
+</div>
+
+<div class="form-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn">
+            ➕ Add Resident
+        </button>
+
+        <a href="{% url 'resident_list' %}" class="btn btn-secondary">
+            ← Back to Residents
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

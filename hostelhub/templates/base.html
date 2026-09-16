@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DVG HostelHub</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            DVG HostelHub
+        </div>
+
+        {% if user.is_authenticated %}
+        <nav>
+            <a href="{% url 'dashboard' %}">Dashboard</a>
+            <a href="{% url 'room_list' %}">Rooms</a>
+            <a href="{% url 'resident_list' %}">Residents</a>
+            <a href="{% url 'attendance_list' %}">Attendance</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+        {% endif %}
+
+    </header>
+
+
+    <main class="main-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</body>
+
+</html>

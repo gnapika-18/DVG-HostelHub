@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Resident Management</h1>
+    <p>View and manage all hostel residents.</p>
+</div>
+
+<div class="section">
+
+    <div class="top-actions">
+        <a href="{% url 'add_resident' %}" class="btn">
+            ➕ Add Resident
+        </a>
+    </div>
+
+    <form method="GET" class="search-form">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by name, email or phone"
+            value="{{ search }}"
+        >
+
+        <button type="submit" class="btn">
+            🔍 Search
+        </button>
+
+    </form>
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Joining Date</th>
+                    <th>Room</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for resident in residents %}
+
+                <tr>
+
+                    <td>
+                        <strong>{{ resident.name }}</strong>
+                    </td>
+
+                    <td>
+                        {{ resident.email }}
+                    </td>
+
+                    <td>
+                        {{ resident.phone }}
+                    </td>
+
+                    <td>
+                        {{ resident.joining_date }}
+                    </td>
+
+                    <td>
+                        <span class="room-badge">
+                            Room {{ resident.room.room_number }}
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="{% url 'resident_update' resident.pk %}"
+                            class="action-edit"
+                        >
+                            ✏️ Edit
+                        </a>
+
+                        <a
+                            href="{% url 'resident_delete' resident.pk %}"
+                            class="action-delete"
+                        >
+                            🗑️ Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6" class="empty-message">
+                        No residents found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

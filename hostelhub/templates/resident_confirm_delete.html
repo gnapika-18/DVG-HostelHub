@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Resident</title>
+</head>
+<body>
+
+    <h1>DVG HostelHub</h1>
+
+    <h2>Delete Resident</h2>
+
+    <p>
+        Are you sure you want to delete
+        <strong>{{ object.name }}</strong>?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit">Yes, Delete</button>
+    </form>
+
+    <br>
+
+    <a href="{% url 'resident_list' %}">
+        Cancel
+    </a>
+
+</body>
+</html>

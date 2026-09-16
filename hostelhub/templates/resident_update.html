@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Update Resident</h1>
+    <p>Update resident information.</p>
+</div>
+
+<div class="form-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn">
+            💾 Update Resident
+        </button>
+
+        <a href="{% url 'resident_list' %}" class="btn btn-secondary">
+            ← Back to Residents
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Room Management</h1>
+    <p>View all rooms and their available beds.</p>
+</div>
+
+<div class="section">
+
+    <a href="{% url 'add_room' %}" class="btn">
+        ➕ Add Room
+    </a>
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>Floor</th>
+                    <th>Capacity</th>
+                    <th>Available Beds</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for room in rooms %}
+
+                <tr>
+
+                    <td>
+                        <strong>{{ room.room_number }}</strong>
+                    </td>
+
+                    <td>
+                        Floor {{ room.floor }}
+                    </td>
+
+                    <td>
+                        {{ room.capacity }}
+                    </td>
+
+                    <td>
+                        {{ room.available_beds }}
+                    </td>
+
+                    <td>
+
+                        {% if room.available_beds > 0 %}
+
+                            <span class="status present">
+                                Available
+                            </span>
+
+                        {% else %}
+
+                            <span class="status absent">
+                                Full
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="5">
+                        No rooms found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

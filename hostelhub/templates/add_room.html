@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Add Room</h1>
+    <p>Create a new room in DVG HostelHub.</p>
+</div>
+
+<div class="form-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn">
+            ➕ Add Room
+        </button>
+
+        <a href="{% url 'room_list' %}" class="btn btn-secondary">
+            ← Back to Rooms
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}
